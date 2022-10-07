@@ -1,0 +1,47 @@
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './board.scss';
+
+const List = ({ boardList, setBoardList }) => {
+    // const LocalList = JSON.parse(localStorage.getItem('list'));
+    return (
+        <div className='BoardList'>
+            <table className='BoardTable'>
+                <thead>
+                    <tr>
+                        <td className='no'>no</td>
+                        <td className='tit'>title</td>
+                        <td className='name'>name</td>
+                        <td className='date'>date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        boardList.map((it, idx) => {
+                            return (
+                                <tr key={idx}>
+                                    <td className='no'>{idx + 1}</td>
+                                    <td className='tit'>
+                                        <Link to={'/view/' + it.id}>
+                                            {it.title}
+                                        </Link>
+                                    </td>
+                                    <td className='name'>{it.name}</td>
+                                    <td className='date'>{it.date}</td>
+                                    {/* .replaceAll('.', '') */}
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+            <div className="BtnGroup">
+                <Link to='/write'>
+                    <button>write</button>
+                </Link>
+            </div>
+        </div>
+    )
+}
+
+export default List;
